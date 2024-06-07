@@ -1,11 +1,13 @@
 import { isDef } from '../core'
 
-export function mapInlineCssVars<T extends Record<string, any | undefined>>(obj?: T, group?: string): Record<string, string> {
+export type CssVarsValueType = string | number | undefined
+
+export function mapInlineCssVars<T extends Record<string, CssVarsValueType>>(obj?: T, group?: string): Record<string, string> {
   const result: Record<string, string> = {}
   const prefix = '--' + (typeof group === 'string' ? `${group}-` : '')
 
   for (const key in obj) {
-    let val = obj[key] as any
+    let val = obj[key] as CssVarsValueType
     if (!isDef(val)) continue
 
     if (typeof val === 'number') {
@@ -18,12 +20,12 @@ export function mapInlineCssVars<T extends Record<string, any | undefined>>(obj?
   return result
 }
 
-export function mapInlineCssVarsToString<T extends Record<string, any | undefined>>(obj?: T, group?: string): string {
+export function mapInlineCssVarsToString<T extends Record<string, CssVarsValueType>>(obj?: T, group?: string): string {
   const prefix = '--' + (typeof group === 'string' ? `${group}-` : '')
   let resultStr = ''
 
   for (const key in obj) {
-    let val = obj[key] as any
+    let val = obj[key] as CssVarsValueType
     if (!isDef(val)) continue
 
     if (typeof val === 'number') {
