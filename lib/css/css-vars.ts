@@ -4,7 +4,7 @@ export type CssVarsValueType = string | number | undefined
 
 export function mapInlineCssVars<T extends Record<string, CssVarsValueType>>(obj?: T, group?: string): Record<string, string> {
   const result: Record<string, string> = {}
-  const prefix = '--' + (typeof group === 'string' ? `${group}-` : '')
+  const prefix = getCssVarPrefixWithGroups(group)
 
   for (const key in obj) {
     let val = obj[key] as CssVarsValueType
@@ -21,7 +21,7 @@ export function mapInlineCssVars<T extends Record<string, CssVarsValueType>>(obj
 }
 
 export function mapInlineCssVarsToString<T extends Record<string, CssVarsValueType>>(obj?: T, group?: string): string {
-  const prefix = '--' + (typeof group === 'string' ? `${group}-` : '')
+  const prefix = getCssVarPrefixWithGroups(group)
   let resultStr = ''
 
   for (const key in obj) {
@@ -36,4 +36,16 @@ export function mapInlineCssVarsToString<T extends Record<string, CssVarsValueTy
   }
 
   return resultStr.trim()
+}
+
+export function getCssVarPrefixWithGroups(...groupNames: (string | undefined)[]): string {
+  let prefix = '--'
+
+  for (const groupName of groupNames) {
+    if (groupName) {
+      prefix += `${groupName}-`
+    }
+  }
+
+  return prefix
 }

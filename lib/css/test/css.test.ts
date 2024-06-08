@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 
-import { mapInlineCssVars, mapInlineCssVarsToString } from '..'
+import { mapInlineCssVars, mapInlineCssVarsToString, getCssVarPrefixWithGroups } from '..'
 
 test('mapInlineCssVars', () => {
   expect(mapInlineCssVars()).toStrictEqual({})
@@ -26,4 +26,11 @@ test('mapInlineCssVarsToString', () => {
   expect(mapInlineCssVarsToString({ mainColor: 'red', mainColor2: 'blue' }, 'test')).toBe(
     '--test-mainColor: red; --test-mainColor2: blue;'
   )
+})
+
+test('getCssVarPrefixWithGroups', () => {
+  expect(getCssVarPrefixWithGroups()).toBe('--')
+  expect(getCssVarPrefixWithGroups('test')).toBe('--test-')
+  expect(getCssVarPrefixWithGroups('test', 'test2')).toBe('--test-test2-')
+  expect(getCssVarPrefixWithGroups('test', 'test2', 'test3')).toBe('--test-test2-test3-')
 })
