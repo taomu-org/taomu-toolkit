@@ -2,7 +2,7 @@ import { isDef } from '../core'
 
 export type CssVarsValueType = string | number | undefined
 
-export function mapInlineCssVars<T extends Record<string, CssVarsValueType>>(obj?: T, group?: string): Record<string, string> {
+export function mapInlineCssVars<T extends object>(obj?: T, group?: string): Record<string, string> {
   const result: Record<string, string> = {}
   const prefix = getCssVarPrefixWithGroups(group)
 
@@ -20,7 +20,7 @@ export function mapInlineCssVars<T extends Record<string, CssVarsValueType>>(obj
   return result
 }
 
-export function mapInlineCssVarsToString<T extends Record<string, CssVarsValueType>>(obj?: T, group?: string): string {
+export function mapInlineCssVarsToString<T extends object>(obj?: T, group?: string): string {
   const prefix = getCssVarPrefixWithGroups(group)
   let resultStr = ''
 
