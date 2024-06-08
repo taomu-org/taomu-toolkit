@@ -22,15 +22,16 @@
 		"dev": "npm run test:ui",
 		"test": "vitest run",
 		"test:ui": "vitest --ui",
-		"test:dev": "vitest"
+		"test:dev": "vitest",
+		"build:docs": "typedoc"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@types/lodash": "^4.17.4",
 		"@types/node": "^20.14.2",
 		"@vitest/ui": "^1.6.0",
 		"jsdom": "^24.1.0",
 		"lodash": "^4.17.21",
+		"typedoc": "^0.25.13",
 		"typescript": "^5.4.5",
 		"vite": "^5.2.13",
 		"vitest": "^1.6.0"
