@@ -53,15 +53,27 @@ export function hasClassNameLoopParent(node: HTMLElement, className: string): bo
 }
 
 /**
- * 返回某元素及其所有父元素是否存在指定 id
+ * 返回某元素及其所有父元素是否存在指定选择器
  *
  * @param node
- * @param id
+ * @param selector
+ * @param stopNode 用于在已知范围内查找时优化性能
+ *
  * @returns
  */
-export function hasIdLoopParent(node: HTMLElement, id: string): boolean {
+export function hasSelectorLoopParent(node: HTMLElement, selector: string, stopNode?: HTMLElement | string): boolean {
   if (!node) return false
-  if (node?.id === id) return true
+  if (node.matches(selector)) return true
+
+  if (stopNode) {
+    if (typeof stopNode === 'string') {
+      if (node.matches(stopNode)) return false
+    } else {
+      if (node === stopNode) return false
+    }
+  }
+
   if (!node?.parentElement) return false
-  return hasIdLoopParent(node.parentElement, id)
+
+  return hasSelectorLoopParent(node.parentElement, selector, stopNode)
 }
