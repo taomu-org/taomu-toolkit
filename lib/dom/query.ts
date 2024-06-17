@@ -9,6 +9,7 @@
  */
 export function findParentNode(node: HTMLElement, selector: string, stopNode?: HTMLElement | string): HTMLElement | null {
   if (!node) return null
+  if (!node.matches) return null
   if (node.matches(selector)) return node
 
   if (stopNode) {
@@ -49,6 +50,7 @@ export function isChildOf(node: HTMLElement, selector: string | HTMLElement): bo
  */
 export function hasSelectorLoopParent(node: HTMLElement, selector: string, stopNode?: HTMLElement | string): boolean {
   if (!node) return false
+  if (!node.matches) return false
   if (node.matches(selector)) return true
 
   if (stopNode) {
