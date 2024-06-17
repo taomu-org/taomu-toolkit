@@ -33,8 +33,15 @@ node3.appendChild(node4)
 test('findParentNode', () => {
   expect(findParentNode(node4, 'div.lv-2')?.id).toBe('id-lv-2')
   expect(findParentNode(node3, 'div.lv-2')?.id).toBe('id-lv-2')
-  expect(findParentNode(node1, 'div.lv-2')?.id).toBe(undefined)
+  expect(findParentNode(node1, 'div.lv-2')).toBe(null)
   expect(findParentNode(node4, 'div.lv-211')?.id).toBe(undefined)
+
+  expect(findParentNode(node4, '#id-lv-2')?.id).toBe('id-lv-2')
+  expect(findParentNode(node4, '#id-lv-2', node3)?.id).toBe(undefined)
+  expect(findParentNode(node4, '#id-lv-2', '#id-lv-3')?.id).toBe(undefined)
+  expect(findParentNode(node4, '#id-lv-2', node2)?.id).toBe('id-lv-2')
+  expect(findParentNode(node4, '#id-lv-2', '#id-lv-2')?.id).toBe('id-lv-2')
+  expect(findParentNode(node4, '#id-lv-2', '#id-lv-1')?.id).toBe('id-lv-2')
 })
 
 test('isChildOf', () => {
