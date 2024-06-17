@@ -39,20 +39,6 @@ export function isChildOf(node: HTMLElement, selector: string | HTMLElement): bo
 }
 
 /**
- * 返回某元素及其所有父元素是否存在指定类名
- *
- * @param node
- * @param className
- * @returns
- */
-export function hasClassNameLoopParent(node: HTMLElement, className: string): boolean {
-  if (!node) return false
-  if (node?.classList?.contains(className)) return true
-  if (!node?.parentElement) return false
-  return hasClassNameLoopParent(node.parentElement, className)
-}
-
-/**
  * 返回某元素及其所有父元素是否存在指定选择器
  *
  * @param node

@@ -2,7 +2,7 @@
 
 import { expect, test } from 'vitest'
 
-import { findParentNode, isChildOf, hasClassNameLoopParent, hasSelectorLoopParent } from '..'
+import { findParentNode, isChildOf, hasSelectorLoopParent } from '..'
 
 const node0 = document.createElement('div')
 node0.id = 'id-lv-0'
@@ -50,14 +50,6 @@ test('isChildOf', () => {
   expect(isChildOf(node4, node4)).toBe(false)
   expect(isChildOf(node4, node0)).toBe(true)
   expect(isChildOf(node4, document.body)).toBe(true)
-})
-
-test('hasClassNameLoopParent', () => {
-  expect(hasClassNameLoopParent(node4, 'lv-4')).toBe(true)
-  expect(hasClassNameLoopParent(node4, 'lv-2')).toBe(true)
-  expect(hasClassNameLoopParent(node4, 'lv-0')).toBe(true)
-  expect(hasClassNameLoopParent(node2, 'lv-1')).toBe(true)
-  expect(hasClassNameLoopParent(node2, 'lv-3')).toBe(false)
 })
 
 test('hasSelectorLoopParent', () => {
