@@ -11,6 +11,9 @@ export default defineConfig({
   },
 
   build: {
+    rollupOptions: {
+      external: ['lodash'],
+    },
     lib: {
       name: 'taomu-toolkit',
       entry: './lib/main.ts',
