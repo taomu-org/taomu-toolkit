@@ -8,12 +8,12 @@ test('transformToDateType', () => {
 
 test('formatDateToString', () => {
   expect(formatDateToString()).toBeTypeOf('string')
-  // 以下用例在 github actions 存在市区不一致的问题
-  // expect(formatDateToString('Mon Apr 01 2024 12:50:41 GMT+0800 (香港标准时间)')).toBe('2024-04-01 12:50:41')
-  // expect(formatDateToString('Mon Apr 01 2024 12:50:41 GMT+0800 (香港标准时间)', 'YYYY-MM-DD HH:mm:ss.ms')).toBe(
-  //   '2024-04-01 12:50:41.000'
-  // )
-  // expect(formatDateToString('Mon Apr 01 2024 12:50:41 GMT+0800 (香港标准时间)', 'YYYY-MM-DD')).toBe('2024-04-01')
+  // 以下用例在 github actions 可能存在市区不一致的问题 需要在 workflow 中设置时区
+  expect(formatDateToString('Mon Apr 01 2024 12:50:41 GMT+0800 (香港标准时间)')).toBe('2024-04-01 12:50:41')
+  expect(formatDateToString('Mon Apr 01 2024 12:50:41 GMT+0800 (香港标准时间)', 'YYYY-MM-DD HH:mm:ss.ms')).toBe(
+    '2024-04-01 12:50:41.000'
+  )
+  expect(formatDateToString('Mon Apr 01 2024 12:50:41 GMT+0800 (香港标准时间)', 'YYYY-MM-DD')).toBe('2024-04-01')
   expect(formatDateToString('2024-04-01 12:50:41', 'YYYY-MM-DD')).toBe('2024-04-01')
   expect(formatDateToString('2024-04-01 12:50:41', 'YYYY年MM月DD日')).toBe('2024年04月01日')
   expect(formatDateToString(1711946982822)).toBe('2024-04-01 12:49:42')

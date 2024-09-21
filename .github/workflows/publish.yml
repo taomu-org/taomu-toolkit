@@ -17,6 +17,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
+    env:
+      TZ: Asia/Hong_Kong
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3 # 获取代码
