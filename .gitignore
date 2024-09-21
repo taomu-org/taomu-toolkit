@@ -26,3 +26,4 @@ dist-ssr
 # build 时由 tsc 生成
 types
 dist-docs
+out
